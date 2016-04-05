@@ -37,7 +37,7 @@ def go():
     for i in ['Age', 'GPA', 'Days_missed']:
         mean = student_dataA.loc[:, i].mean()
         student_dataA.loc[:, i].fillna(value = mean, inplace = True)
-
+    student_dataA.to_csv('mock_student_dataA3A.csv')
 
     student_dataB = student_data.copy()
     for row, student in student_dataB.iterrows():
@@ -47,8 +47,6 @@ def go():
             cond_mean = student_dataB.groupby('Graduated').get_group(class_).mean()[i]
             student_dataB.set_value(index = row, col = str(i), value = cond_mean)
     student_dataB.to_csv('mock_student_dataA3B.csv')
-
-    #return descriptive_stats, modes, missing_vals
 
 if __name__ == '__main__':
     go()
