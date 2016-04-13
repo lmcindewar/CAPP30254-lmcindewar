@@ -22,6 +22,9 @@ def cond_mean_impute(df, columns, classifier):
                 cond_mean = df.groupby(classifier).get_group(class_).mean()[col]
                 df.set_value(index = i, col = col, value = cond_mean)
 
+def impute_to_value(df, column, val):
+    df[column].fillna(value = val, inplace = True)
+
 
 def impute_gender(df, name_col, gender_col):
     '''Fills in missing gender using Genderize.io API.
@@ -35,14 +38,14 @@ def impute_gender(df, name_col, gender_col):
             df.set_value(index = i, col = gender_col, value = gender.title())
 
 
-def drop_(df, columns_to_drop, drop_if_col, drop_val):
+def drop_data(df, columns_to_drop = None, drop_if_col = None, drop_val = None):
     '''Takes a dataframe and lists of column names to drop entire column.
     Another list of column names to conditionally drop observations (rows)
     if value is an specified.'''
 
     df.drop(df[columns_to_drop], axis = 1, inplace = True)
     for column in drop_if_zero:
-        df = df[dataframe[column] != drop_val]
+        df = df[df[column] != drop_val]
 
 
 def bin_data(df, bin_dict):
@@ -67,16 +70,11 @@ def bin_data(df, bin_dict):
         #Drops observations outside of the bins
         df = df.dropna(axis = 0, subset = [category])
 
+def cat_from_cont(df, column, boundaries, labels, keep_col = False):
+    df[column] = pd.cut(df[column], boundaries, labels = labels, include_lowest = True)
+    dummy_var = pd.get_dummies(df[column], drop_first = True)
+    df = pd.concat([df, dummy_var], axis = 1)
+    if not keep_col:
+        df = df.drop(column, axis = 1)
+    return df
 
-def create_samples(df, fraction_for_testing):
-    '''Given a dataframe and fraction for testing data (given as decimal), splits
-    the data into random samples of training and testing data. Fraction for testing
-    input as decimals, eg. 0.1 for 10 pct.
-    Returns the test sample and training samples'''
-
-    sample_n = dataframe.shape[0]
-    testing_n = round(sample_n * fraction_for_testing)
-    testing_sample = random.sample(range(sample_n), testing_n)
-    testing_data = df.iloc[testing_sample]
-    training_data = df.drop(dataframe.index[testing_sample], axis = 0)
-    return testing_data, training_data

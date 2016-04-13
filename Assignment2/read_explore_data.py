@@ -1,11 +1,13 @@
 import sys
 import pandas as pd
+import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.style.use('ggplot')
 
-def read(filename):
+def read(filename, index_col = False):
     '''Read csv file to pandas dataframe'''
-    dataframe = pd.read_csv(filename)
-    return dataframe
+    df = pd.DataFrame.from_csv(filename)
+    return df
 
 
 def preview(df, filename = None):
@@ -23,9 +25,14 @@ def preview(df, filename = None):
         html_str = '<br>'.join([x.to_html() for x in explore])
         with open(filename, 'w') as f:
             f.write(html_str)
-    else:
-        return explore
+    return explore
 
+def gen_hist(df):
+    '''Generate histograms of for each column in the dataframe'''
+    cols = df.columns.values
+    for col in cols:
+        df.hist(col)
+        plt.savefig(col)
 
 # if __name__ == '__main__':
 #     if len(sys.argv) != 2:
