@@ -1,7 +1,12 @@
+Leith McIndewar<br>
+Machine Learning<br>
+Assignment 2<br>
+4/12/16<br>
+
+**Columns and datatypes**
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Columns and datatypes</th>
     </tr>
   </thead>
   <tbody>
@@ -51,6 +56,8 @@
     </tr>
   </tbody>
 </table><br>
+**Descriptive Statistics**
+<html>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -214,10 +221,12 @@
       <td>20.000000</td>
     </tr>
   </tbody>
-</table><br><table border="1" class="dataframe">
+</table><br>
+**Modes**
+<table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
+</tr>
       <th>SeriousDlqin2yrs</th>
       <th>RevolvingUtilizationOfUnsecuredLines</th>
       <th>age</th>
@@ -247,11 +256,11 @@
       <td>0.0</td>
     </tr>
   </tbody>
-</table><br><table border="1" class="dataframe">
+</table><br>
+**Missing Values**
+<table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
     </tr>
   </thead>
   <tbody>
@@ -298,6 +307,218 @@
     <tr>
       <th>NumberOfDependents</th>
       <td>3924</td>
+    </tr>
+  </tbody>
+</table>
+**Data Histograms**<br>
+Many of the histograms are not good illustrations of the data because of outliers that skew the scale of the x-axis. I would continue to refine these to get better representations.
+<img src ='MonthlyIncome.png'/>
+<br>
+<br>
+<img src ='NumberOfDependents.png'/>
+<br>
+<br>
+<img src = 'NumberOfOpenCreditLinesAndLoans.png'/>
+<br>
+<br>
+<img src = 'NumberOfTime30-59DaysPastDueNotWorse.png'/>
+<br>
+<br>
+<img src = 'NumberOfTime60-89DaysPastDueNotWorse.png'/>
+<br>
+<br>
+<img src = 'NumberOfTimes90DaysLate.png'/>
+<br>
+<br>
+<img src = 'NumberRealEstateLoansOrLines.png'/>
+<br><br>
+<br>
+**Cleaning data**<br>
+To prepare the data for generating the model, I filled in missing information for MonthlyIncome and NumberOfDependents. I used mean imputation for missing MonthlyIncome data. To fill in the missing number of dependents, I made the (big) assumption that those that did not fill in number of dependents were more likely to not have dependents. Though it was a big assumption, it seems reasonable that those who did not fill in dependents would be more likely not to have any. I would try other methods of imputation for both, especially for dependents if I were to continue using this dataset.
+<br>I chose to categorize and create dummy variables DebtRatio and Age. For debt ration, there were several large outliers that may have affected the model if it were left as is. For example, 75% of the 150,000 samples had a debt ratio at or below 0.86, yet there was at least one at 329,664. I created dummy variables for a ranges of debt ratio divided by 0.25 up to 1. I dropped the original debt ratio variable as well. I ran a similar process for age. If I were to continue refining this model, it would be worth checking if it was a the right decision to drop the original variables and if the bins sizes added to the model.
+
+<br>
+<br>
+**Model 1**<br>
+This model uses the raw values for age and number od dependents.
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Columns</th>
+      <th>Model Coefficients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RevolvingUtilizationOfUnsecuredLines</td>
+      <td>-0.000050</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>age</td>
+      <td>-0.042671</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NumberOfTime30-59DaysPastDueNotWorse</td>
+      <td>0.503462</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>DebtRatio</td>
+      <td>-0.000017</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>MonthlyIncome</td>
+      <td>-0.000049</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NumberOfOpenCreditLinesAndLoans</td>
+      <td>-0.018155</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NumberOfTimes90DaysLate</td>
+      <td>0.356532</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NumberRealEstateLoansOrLines</td>
+      <td>0.084392</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NumberOfTime60-89DaysPastDueNotWorse</td>
+      <td>-0.831169</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>NumberOfDependents</td>
+      <td>0.098085</td>
+    </tr>
+  </tbody>
+</table>
+
+**Model 2**<br>
+This model includes the binned dummy variables for age and number of dependents.
+<br>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Columns</th>
+      <th>Model Coefficients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RevolvingUtilizationOfUnsecuredLines</td>
+      <td>-0.000043</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NumberOfTime30-59DaysPastDueNotWorse</td>
+      <td>0.481873</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>MonthlyIncome</td>
+      <td>-0.000030</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NumberOfOpenCreditLinesAndLoans</td>
+      <td>-0.012714</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NumberOfTimes90DaysLate</td>
+      <td>0.514969</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NumberRealEstateLoansOrLines</td>
+      <td>0.054729</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NumberOfTime60-89DaysPastDueNotWorse</td>
+      <td>-0.966976</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NumberOfDependents</td>
+      <td>0.072990</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>.2-.4</td>
+      <td>-0.296910</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>.4-.6</td>
+      <td>-0.051176</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>.6-.8</td>
+      <td>0.264402</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>.8-1</td>
+      <td>0.213745</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1-10</td>
+      <td>0.237350</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>10+</td>
+      <td>-0.117229</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>20-30</td>
+      <td>0.333624</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>30-40</td>
+      <td>0.215526</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>40-50</td>
+      <td>-0.063297</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>50-60</td>
+      <td>-0.352283</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>60-70</td>
+      <td>-0.881538</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>70-80</td>
+      <td>-1.015456</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>80+</td>
+      <td>-0.636311</td>
     </tr>
   </tbody>
 </table>
