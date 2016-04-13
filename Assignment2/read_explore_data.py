@@ -33,10 +33,3 @@ def gen_hist(df):
     for col in cols:
         df.hist(col)
         plt.savefig(col)
-
-# if __name__ == '__main__':
-#     if len(sys.argv) != 2:
-#         return 'Enter one filename'
-#     else:
-#         df = go(sys.argv[1])
-#         preview(df)

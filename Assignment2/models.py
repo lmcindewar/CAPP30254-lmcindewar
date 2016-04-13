@@ -18,11 +18,16 @@ def create_samples(df, fraction_for_testing):
     return testing_data, training_data
 
 def splitX_y(df, y_column):
+    '''Splits a dataframe into the explanatory data and the outcome variable.
+    Takes a dataframe and returns the dataframe of features and datframe of 
+    outcome variables.'''
     y = df[y_column].copy()
     X = df.drop(y_column, axis = 1)
     return X, y
 
 def logistic_reg(xdf, y):
+    '''Runs a logistic regression. Takes the feature dataframe and outcome
+    dataframe. Returns a model object.'''
     model = LogisticRegression()
     y = y.ravel()
     model = model.fit(xdf, y)
