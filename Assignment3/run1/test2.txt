@@ -1,0 +1,167 @@
+GridSearchCV(cv=None, error_score='raise',
+       estimator=KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=3, p=2,
+           weights='uniform'),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'weights': ['uniform', 'distance'], 'n_neighbors': [1, 5, 10, 25, 50, 100], 'algorithm': ['auto', 'ball_tree', 'kd_tree']},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+
+{
+  "F1 Score": 0.0309,
+  "Accuracy": 0.9332,
+  "AUC": 0.5075,
+  "Precision": 0.5565,
+  "Train Time (s)": 112.28713917732239,
+  "Recall": 0.0159
+}
+
+GridSearchCV(cv=None, error_score='raise',
+       estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=None,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=None, splitter='best'),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'max_features': ['sqrt', 'log2'], 'criterion': ['gini', 'entropy'], 'max_depth': [1, 5, 10, 20, 50, 100], 'min_samples_split': [2, 5, 10]},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+
+{
+  "F1 Score": 0.002,
+  "Accuracy": 0.9329,
+  "AUC": 0.5004,
+  "Precision": 0.2857,
+  "Train Time (s)": 9.454975843429565,
+  "Recall": 0.001
+}
+
+GridSearchCV(cv=None, error_score='raise',
+       estimator=SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'penalty': ['l2', 'l1', 'elasticnet'], 'loss': ['hinge', 'log', 'perceptron']},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+
+{
+  "F1 Score": 0.0146,
+  "Accuracy": 0.9257,
+  "AUC": 0.4999,
+  "Precision": 0.066,
+  "Train Time (s)": 1.2395648956298828,
+  "Recall": 0.0082
+}
+
+GridSearchCV(cv=None, error_score='raise',
+       estimator=LogisticRegression(C=100000.0, class_weight=None, dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', n_jobs=1, penalty='l1', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'penalty': ['l1', 'l2'], 'C': [1e-05, 0.0001, 0.001, 0.01, 0.1, 1, 10]},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+
+{
+  "F1 Score": 0.0734,
+  "Accuracy": 0.9338,
+  "AUC": 0.5186,
+  "Precision": 0.5833,
+  "Train Time (s)": 10.975066184997559,
+  "Recall": 0.0392
+}
+
+GridSearchCV(cv=None, error_score='raise', estimator=GaussianNB(),
+       fit_params={}, iid=True, n_jobs=1, param_grid={},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+
+{
+  "F1 Score": 0.037,
+  "Accuracy": 0.9318,
+  "AUC": 0.5085,
+  "Precision": 0.3489,
+  "Train Time (s)": 0.1399691104888916,
+  "Recall": 0.0195
+}
+
+GridSearchCV(cv=None, error_score='raise',
+       estimator=AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=1,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'n_estimators': [1, 10, 100, 1000, 10000], 'algorithm': ['SAMME', 'SAMME.R']},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0)
+
+{
+  "F1 Score": 0.2762,
+  "Accuracy": 0.9347,
+  "AUC": 0.5872,
+  "Precision": 0.5374,
+  "Train Time (s)": 857.1297380924225,
+  "Recall": 0.1859
+}
+
+{
+  "F1 Score": {
+    "LR": 0.0734,
+    "AB": 0.2762,
+    "NB": 0.037,
+    "DT": 0.002,
+    "SGD": 0.0146,
+    "KNN": 0.0309,
+    "RF": 0.248,
+    "GB": 0.2982
+  },
+  "Accuracy": {
+    "LR": 0.9338,
+    "AB": 0.9347,
+    "NB": 0.9318,
+    "DT": 0.9329,
+    "SGD": 0.9257,
+    "KNN": 0.9332,
+    "RF": 0.9364,
+    "GB": 0.9368
+  },
+  "Train Time (s)": {
+    "LR": 10.975066184997559,
+    "AB": 857.1297380924225,
+    "NB": 0.1399691104888916,
+    "DT": 9.454975843429565,
+    "SGD": 1.2395648956298828,
+    "KNN": 112.28713917732239,
+    "RF": 77.58346581459045,
+    "GB": 3992.868514060974
+  },
+  "Precision": {
+    "LR": 0.5833,
+    "AB": 0.5374,
+    "NB": 0.3489,
+    "DT": 0.2857,
+    "SGD": 0.066,
+    "KNN": 0.5565,
+    "RF": 0.5869,
+    "GB": 0.5758,
+  },
+  "Recall": {
+    "LR": 0.0392,
+    "AB": 0.1859,
+    "NB": 0.0195,
+    "DT": 0.001,
+    "SGD": 0.0082,
+    "KNN": 0.0159,
+    "RF": 0.1572,
+    "GB": 0.2012
+  },
+  "AUC": {
+    "LR": 0.5186,
+    "AB": 0.5872,
+    "NB": 0.5085,
+    "DT": 0.5004,
+    "SGD": 0.4999,
+    "KNN": 0.5075,
+    "RF": 0.5747,
+    "GB": 0.5953
+  }
+}

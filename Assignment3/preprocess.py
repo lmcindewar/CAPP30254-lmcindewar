@@ -79,15 +79,15 @@ def bin_data(df, bin_dict):
         #Drops observations outside of the bins
         df = df.dropna(axis = 0, subset = [category])
 
-def cat_from_cont(df, column, boundaries, labels, keep_col = False):
+def cat_from_cont(df, column, boundaries, labels, drop_col = True):
     '''Creates categorical, dummy variables from a continuous variable. One dummy
     variable column per category is created. If keep_col is not passed as True,
     the original category is dropped.'''
     df.loc[:,column] = pd.cut(df[column], boundaries, labels = labels, include_lowest = True)
     dummy_var = pd.get_dummies(df[column])
     df = pd.concat([df, dummy_var], axis = 1)
-    if not keep_col:
-        df = df.drop(column, axis = 1)
+    if drop_col:
+        df.drop(column, axis = 1, inplace = True)
     return df
 
 def log_feature(df, column, offset_zero = 0, drop_orig = True):
@@ -97,3 +97,5 @@ def log_feature(df, column, offset_zero = 0, drop_orig = True):
     offset = df[column] + offset_zero
     newcolumn = 'log_' + str(column)
     df.loc[:,newcolumn] = offset.apply(np.log)
+    if drop_orig:
+        df.drop(column, axis = 1, inplace = True)

@@ -1,0 +1,118 @@
+GridSearchCV(cv=None, error_score='raise',
+       estimator=LogisticRegression(C=100000.0, class_weight=None, dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', n_jobs=1, penalty='l1', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'C': [1e-05, 0.0001, 0.001, 0.01, 0.1, 1, 10], 'penalty': ['l1', 'l2']},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0) 
+
+{
+  "Train Time (s)": 10.633809804916382,
+  "Accurary": 0.9329,
+  "AUC": 0.5145,
+  "Precision": 0.4846,
+  "Recall": 0.0314,
+  "F1 Score": 0.0589
+} 
+
+GridSearchCV(cv=None, error_score='raise',
+       estimator=KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=3, p=2,
+           weights='uniform'),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'weights': ['uniform', 'distance'], 'algorithm': ['auto', 'ball_tree', 'kd_tree'], 'n_neighbors': [1, 5, 10, 25, 50, 100]},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0) 
+
+{
+  "Train Time (s)": 93.8794469833374,
+  "Accurary": 0.9334,
+  "AUC": 0.5078,
+  "Precision": 0.6111,
+  "Recall": 0.0164,
+  "F1 Score": 0.032
+} 
+
+{'Train Time (s)': {'KNN': 93.8794469833374, 'LR': 10.633809804916382}, 'Accurary': {'KNN': 0.93340000000000001, 'LR': 0.93289999999999995}, 'AUC': {'KNN': 0.50780000000000003, 'LR': 0.51449999999999996}, 'Precision': {'KNN': 0.61109999999999998, 'LR': 0.48459999999999998}, 'Recall': {'KNN': 0.016400000000000001, 'LR': 0.031399999999999997}, 'F1 Score': {'KNN': 0.032000000000000001, 'LR': 0.058900000000000001}}
+
+GridSearchCV(cv=None, error_score='raise',
+       estimator=LogisticRegression(C=100000.0, class_weight=None, dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', n_jobs=1, penalty='l1', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'penalty': ['l1', 'l2'], 'C': [1e-05, 0.0001, 0.001, 0.01, 0.1, 1, 10]},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0) 
+
+{
+  "Train Time (s)": 9.669286012649536,
+  "Accurary": 0.9342,
+  "F1 Score": 0.0603,
+  "Recall": 0.0319,
+  "AUC": 0.515,
+  "Precision": 0.5548
+} 
+
+GridSearchCV(cv=None, error_score='raise',
+       estimator=KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=3, p=2,
+           weights='uniform'),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'n_neighbors': [1, 5, 10, 25, 50, 100], 'weights': ['uniform', 'distance'], 'algorithm': ['auto', 'ball_tree', 'kd_tree']},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0) 
+
+{
+  "Train Time (s)": 117.06627893447876,
+  "Accurary": 0.9342,
+  "F1 Score": 0.0439,
+  "Recall": 0.0228,
+  "AUC": 0.5108,
+  "Precision": 0.5764
+} 
+
+GridSearchCV(cv=None, error_score='raise',
+       estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=None,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=None, splitter='best'),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'max_depth': [1, 5, 10, 20, 50, 100], 'max_features': ['sqrt', 'log2'], 'criterion': ['gini', 'entropy'], 'min_samples_split': [2, 5, 10]},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0) 
+
+{
+  "Train Time (s)": 8.957268953323364,
+  "Accurary": 0.9337,
+  "F1 Score": 0.1454,
+  "Recall": 0.0853,
+  "AUC": 0.5395,
+  "Precision": 0.4934
+} 
+
+GridSearchCV(cv=None, error_score='raise',
+       estimator=AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=1,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=None, splitter='best'),
+          learning_rate=1.0, n_estimators=200, random_state=None),
+       fit_params={}, iid=True, n_jobs=1,
+       param_grid={'n_estimators': [1, 10, 100, 1000, 10000], 'algorithm': ['SAMME', 'SAMME.R']},
+       pre_dispatch='2*n_jobs', refit=True, scoring=None, verbose=0) 
+
+{
+  "Train Time (s)": 810.5053870677948,
+  "Accurary": 0.9358,
+  "F1 Score": 0.3071,
+  "Recall": 0.215,
+  "AUC": 0.6009,
+  "Precision": 0.5373
+} 
+
+Unexpected error raised for:  GradientBoostingClassifier(init=None, learning_rate=0.05, loss='deviance',
+              max_depth=6, max_features=None, max_leaf_nodes=None,
+              min_samples_leaf=1, min_samples_split=2,
+              min_weight_fraction_leaf=0.0, n_estimators=10,
+              presort='auto', random_state=None, subsample=0.5, verbose=0,
+              warm_start=False)
+{'Train Time (s)': {'LR': 9.669286012649536, 'AB': 810.5053870677948, 'KNN': 117.06627893447876, 'DT': 8.957268953323364}, 'Accurary': {'LR': 0.93420000000000003, 'AB': 0.93579999999999997, 'KNN': 0.93420000000000003, 'DT': 0.93369999999999997}, 'Recall': {'LR': 0.031899999999999998, 'AB': 0.215, 'KNN': 0.022800000000000001, 'DT': 0.085300000000000001}, 'AUC': {'LR': 0.51500000000000001, 'AB': 0.60089999999999999, 'KNN': 0.51080000000000003, 'DT': 0.53949999999999998}, 'Precision': {'LR': 0.55479999999999996, 'AB': 0.5373, 'KNN': 0.57640000000000002, 'DT': 0.49340000000000001}, 'F1 Score': {'LR': 0.060299999999999999, 'AB': 0.30709999999999998, 'KNN': 0.043900000000000002, 'DT': 0.1454}}
+

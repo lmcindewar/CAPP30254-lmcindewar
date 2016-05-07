@@ -9,7 +9,7 @@ def evaluation_dict(y_test, y_test_pred, run_time):
     '''Creates a dictionary with 5 prediction evaluation metrics and a measure
     of how long it took the model to run.'''
     results = {}
-    metrics = {'Accurary': accuracy_score, 'F1 Score': f1_score, \
+    metrics = {'Accuracy': accuracy_score, 'F1 Score': f1_score, \
                 'Precision': precision_score, 'Recall': recall_score, \
                 'AUC': roc_auc_score}
     for label, fn in metrics.items():
@@ -30,13 +30,14 @@ def build_comparison(comparison_dict, model_dict, model_label):
     return comparison_dict
 
 
-def plot_metrics(comparison_dict):
+def plot_metrics(comparison_dict, filename):
     '''Plots metrics to compare models. Takes the comparison dictionary built
     while running models.'''
     f, axarr = plt.subplots(3, 2, figsize = (15,15))
     plt.setp(axarr)
     i = 0
     j = 0
+    X = []
     for metric, models in comparison_dict.items():
         xlabels = models.keys()
         X = range(len(models))
@@ -47,7 +48,7 @@ def plot_metrics(comparison_dict):
             j += 1
             i = 0
     plt.setp(axarr, xticks = X, xticklabels = xlabels)
-    plt.savefig('modelComparison.png')
+    plt.savefig(filename)
 
 # def precision_at_k(y_true, y_scores, k):
 #             #Creates scores for precisionatk: y_pred_probs = clf.fit(X_train, y_train).predict_proba(X_test)[:,1]

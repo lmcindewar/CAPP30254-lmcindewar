@@ -1,6 +1,6 @@
-from read_explore_data import read, preview, gen_hist
+from read_explore_data import read, preview, make_hist
 from preprocess import mean_impute, impute_to_value, cat_from_cont, med_impute, log_feature
-from models import logistic_reg, splitX_y, create_samples, model_loop
+from models import logistic_reg, splitX_y, create_samples, model_loop, gridsearch_model
 from sklearn.cross_validation import train_test_split
 import numpy as np
 
@@ -9,7 +9,7 @@ def go():
 
     df = read('./data/cs-training.csv')
 
-    gen_hist(df)
+    #make_hist(df)
 
     #################### Split, Preprocess, and Impute ####################
 
@@ -45,4 +45,7 @@ def go():
 
     #################### Generate and evaluate models #####################
 
-    gridsearch_model(X_train, X_test, y_train, y_test, ['KNN', 'LR', 'DT', 'RF', 'SVM'])
+    gridsearch_model(X_train, X_test, y_train, y_test, ['DT'], 'modelComparisonDT.png')#KNN', 'DT', 'SGD', 'LR', 'NB', 'AB', 'RF', 'GB'])
+
+if __name__ == "__main__":
+    go()
